@@ -1,7 +1,8 @@
 const express = require('express');
 const Joi = require('joi');
 const db = require('../db');
-const messages = db.get('messages')
+// const messages = db.get('messages')
+const cityData = db.get('cityData')
 
 const schema = Joi.object().keys({
   city: Joi.string().required(),
@@ -16,7 +17,8 @@ const schema = Joi.object().keys({
 const router = express.Router();
 
 router.get('/', (req, res) => {
-  messages
+  // messages
+  cityData
     .find()
     .then(allData => {
       res.json(allData)
@@ -27,15 +29,17 @@ router.post('/', (req, res) => {
   const result = Joi.validate(req.body, schema);
   if (result.error === null) {
     const { city, country } = req.body
-    const userData = {
+    // const userData = {
+    const submittedData = {
       city,
       country,
       // latitude: req.body.latitude,
       // longitude: req.body.longitude
       date: new Date()
     }
-    messages
-      .insert(userData)
+    cityData
+      // .insert(userData)
+      .insert(submittedData)
       .then(insertedData => {
         res.json(insertedData)
       })

@@ -76,8 +76,8 @@ class Survey extends Component {
     return (
       <div>
         <Card body>
-          <CardTitle>Special Title Treatment</CardTitle>
-          <CardText>With supporting text below as a natural lead-in to additional content.</CardText>
+          <CardTitle>City Info</CardTitle>
+          {/* <CardText></CardText> */}
           {!this.state.sendingData && !this.state.sentData ?
             <Form onSubmit={this.formSubmitted}>
               <FormGroup>

@@ -1,6 +1,6 @@
 const express = require('express');
 
-const messages = require('./messages');
+const cityData = require('./cityData');
 
 const router = express.Router();
 
@@ -10,6 +10,7 @@ router.get('/', (req, res) => {
   });
 });
 
-router.use('/messages', messages);
+// router.use('/messages', messages);
+router.use('/citydata', cityData);
 
 module.exports = router;

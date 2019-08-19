@@ -2,7 +2,7 @@ const request = require('supertest');
 
 const app = require('../src/app');
 
-describe('POST /api/v1/messages', () => {
+describe('POST /api/v1/cityData', () => {
   it('responds with inserted data', function (done) {
     const requestObj = {
       city: 'Budapest',
@@ -14,7 +14,7 @@ describe('POST /api/v1/messages', () => {
       date: '2019-08-19T11:16:15.124Z'
     }
     request(app)
-      .post('/api/v1/messages')
+      .post('/api/v1/cityData')
       .send(requestObj)
       .set('Accept', 'application/json')
       .expect('Content-Type', /json/)
