@@ -16,7 +16,11 @@ const schema = Joi.object().keys({
 const router = express.Router();
 
 router.get('/', (req, res) => {
-  res.json([]);
+  messages
+    .find()
+    .then(allData => {
+      res.json(allData)
+    })
 });
 
 router.post('/', (req, res) => {

@@ -3,7 +3,7 @@ const request = require('supertest');
 const app = require('../src/app');
 
 describe('POST /api/v1/messages', () => {
-  it('responds with inserted message', function (done) {
+  it('responds with inserted data', function (done) {
     const requestObj = {
       city: 'Budapest',
       country: 'Hungary'
