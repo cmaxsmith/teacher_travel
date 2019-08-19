@@ -73,6 +73,7 @@ class Survey extends Component {
   }
 
   render() {
+    console.log(this.props.handleSubmit)
     return (
       <div>
         <Card body>
@@ -91,7 +92,7 @@ class Survey extends Component {
               <Button outline color="primary" type="submit" disabled={!this.formIsValid()}>Submit</Button>
             </Form> :
             this.state.sendingData ?
-              <img src={yellowSpinner} /> :
+              <img src={yellowSpinner} alt="loading spinner" /> :
               <CardText> Thanks for submitting </CardText>
           }
         </Card>

@@ -3,6 +3,7 @@ import './App.css';
 import { Layout, Header, Navigation, Drawer, Content } from 'react-mdl';
 import Main from './components/main';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 function App() {
   return (
@@ -35,4 +36,4 @@ function App() {
   );
 }
 
-export default App;
+export default connect()(App);

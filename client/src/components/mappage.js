@@ -5,6 +5,7 @@ import bluedotradius from '../assets/blue-dot-radius.png';
 import Survey from './survey';
 
 
+
 let myIcon = L.icon({
   iconUrl: bluedotradius,
   iconSize: [50, 50],
@@ -58,7 +59,7 @@ class MapPage extends Component {
           }
         </Map>
         <div className="message-form">
-          <Survey />
+          <Survey handleSubmit={this.props.handleSubmit} />
         </div>
       </div>
     )
