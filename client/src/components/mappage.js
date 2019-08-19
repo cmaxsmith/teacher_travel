@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
 import L from 'leaflet';
-import redlocation from '../assets/red_location.png';
+import bluedotradius from '../assets/blue-dot-radius.png';
 import Survey from './survey';
 
 
 let myIcon = L.icon({
-  iconUrl: redlocation,
+  iconUrl: bluedotradius,
   iconSize: [50, 50],
   iconAnchor: [25, 50],
   popupAnchor: [0, -50]
