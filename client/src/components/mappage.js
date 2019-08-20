@@ -25,17 +25,11 @@ class MapPage extends Component {
   // }
 
   componentDidMount() {
-    const { handleLocation } = this.props
+    const { handleUserLocation, handleViewLocation } = this.props
     navigator.geolocation.getCurrentPosition((position) => {
-      handleLocation(position.coords.latitude, position.coords.longitude)
-      // this.setState({
-      //   location: {
-      //     lat: position.coords.latitude,
-      //     lng: position.coords.longitude
-      //   },
-      //   zoom: 13,
-      //   haveUsersLocation: true
-      // })
+      const { latitude, longitude } = position.coords
+      handleUserLocation(latitude, longitude)
+      handleViewLocation(latitude, longitude)
       console.log(position.coords.latitude, position.coords.longitude);
       console.log(this.props)
     })
@@ -43,17 +37,18 @@ class MapPage extends Component {
 
   render() {
     console.log(this.props)
-    const position = [this.props.userLocation.lat, this.props.userLocation.lng]
+    const userLocation = [this.props.userLocation.lat, this.props.userLocation.lng]
+    const viewLocation = [this.props.viewLocation.lat, this.props.viewLocation.lng]
     return (
       <div>
-        <Map className="map" center={position} zoom={this.props.zoom}>
+        <Map className="map" center={viewLocation} zoom={this.props.zoom}>
           <TileLayer
             attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
           {this.props.haveUsersLocation ?
             <Marker
-              position={position}
+              position={userLocation}
               icon={myIcon}
             >
               <Popup>

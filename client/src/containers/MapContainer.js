@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import MapPage from '../components/mappage';
 import { submitForm } from '../actions/formActions';
-import { updateLocation } from '../actions/mapActions'
+import { setUserLocation, setViewLocation } from '../actions/mapActions'
 
 const mapStateToProps = state => ({
   dataSent: state.formReducer.dataSent,
@@ -10,6 +10,10 @@ const mapStateToProps = state => ({
   userLocation: {
     lat: state.mapReducer.userLocation.lat,
     lng: state.mapReducer.userLocation.lng
+  },
+  viewLocation: {
+    lat: state.mapReducer.viewLocation.lat,
+    lng: state.mapReducer.viewLocation.lng
   },
   zoom: state.mapReducer.zoom,
   haveUsersLocation: state.mapReducer.haveUsersLocation
@@ -21,8 +25,12 @@ const mapDispatchToProps = dispatch => ({
     dispatch(submitForm(city, country));
   },
 
-  handleLocation: (lat, lng) => {
-    dispatch(updateLocation(lat, lng))
+  handleUserLocation: (lat, lng) => {
+    dispatch(setUserLocation(lat, lng))
+  },
+  
+  handleViewLocation: (lat, lng) => {
+    dispatch(setViewLocation(lat, lng))
   }
 
 });

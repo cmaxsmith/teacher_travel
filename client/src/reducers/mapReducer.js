@@ -5,7 +5,10 @@ const initialState = {
   },
   zoom: 3,
   haveUsersLocation: false,
-
+  viewLocation: {
+    lat: 51.505,
+    lng: -0.09
+  }
 }
 
 const mapReducer = (state = initialState, action) => {
@@ -19,6 +22,15 @@ const mapReducer = (state = initialState, action) => {
         },
         zoom: 13,
         haveUsersLocation: true
+      }
+    case 'SET_VIEW_LOCATION':
+      return {
+        ...state,
+        viewLocation: {
+          lat: action.viewLocation.lat,
+          lng: action.viewLocation.lng
+        },
+        zoom: 13,
       }
     default:
       return state
