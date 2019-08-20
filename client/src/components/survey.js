@@ -38,11 +38,9 @@ class Survey extends Component {
       sendingData: true
     })
     event.preventDefault()
-    console.log(this.state)
     if (this.formIsValid()) {
       fetch(API_URL, {
         method: 'POST',
-        // mode: 'no-cors',
         headers: {
           'content-type': 'application/json'
         },
@@ -56,12 +54,14 @@ class Survey extends Component {
         .then(message => {
           console.log(message)
           setTimeout(() => {
+            this.props.handleSubmit(this.state.city, this.state.country)
             this.setState({
               sendingData: false,
               sentData: true
             })
           }, 1000)
         })
+        .then(console.log(this.props))
     }
   }
 
@@ -73,7 +73,6 @@ class Survey extends Component {
   }
 
   render() {
-    console.log(this.props.handleSubmit)
     return (
       <div>
         <Card body>
@@ -89,7 +88,11 @@ class Survey extends Component {
                 <Label for="country">Country</Label>
                 <Input onChange={this.valueChanged} type="text" name="country" id="country" placeholder="enter a country" />
               </FormGroup>
-              <Button outline color="primary" type="submit" disabled={!this.formIsValid()}>Submit</Button>
+              <Button
+                outline color="primary"
+                type="submit"
+              // disabled={!this.formIsValid()}
+              >Submit</Button>
             </Form> :
             this.state.sendingData ?
               <img src={yellowSpinner} alt="loading spinner" /> :

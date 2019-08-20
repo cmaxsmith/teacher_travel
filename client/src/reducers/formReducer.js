@@ -1,5 +1,8 @@
 const initialState = {
-  dataSent: false
+  dataSent: false,
+  city: '',
+  country: '',
+
 }
 
 const formReducer = (state = initialState, action) => {
@@ -7,7 +10,9 @@ const formReducer = (state = initialState, action) => {
     case 'SUBMIT_FORM':
       return {
         ...state,
-        dataSent: true
+        dataSent: true,
+        city: action.city,
+        country: action.country
       }
     default:
       return state

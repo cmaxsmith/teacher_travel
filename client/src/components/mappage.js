@@ -15,39 +15,43 @@ let myIcon = L.icon({
 
 
 class MapPage extends Component {
-  state = {
-    location: {
-      lat: 51.505,
-      lng: -0.09,
-    },
-    zoom: 3,
-    haveUsersLocation: false
-  }
+  // state = {
+  //   location: {
+  //     lat: 51.505,
+  //     lng: -0.09,
+  //   },
+  //   zoom: 3,
+  //   haveUsersLocation: false
+  // }
 
   componentDidMount() {
+    const { handleLocation } = this.props
     navigator.geolocation.getCurrentPosition((position) => {
-      this.setState({
-        location: {
-          lat: position.coords.latitude,
-          lng: position.coords.longitude
-        },
-        zoom: 13,
-        haveUsersLocation: true
-      })
+      handleLocation(position.coords.latitude, position.coords.longitude)
+      // this.setState({
+      //   location: {
+      //     lat: position.coords.latitude,
+      //     lng: position.coords.longitude
+      //   },
+      //   zoom: 13,
+      //   haveUsersLocation: true
+      // })
       console.log(position.coords.latitude, position.coords.longitude);
+      console.log(this.props)
     })
   }
 
   render() {
-    const position = [this.state.location.lat, this.state.location.lng]
+    console.log(this.props)
+    const position = [this.props.userLocation.lat, this.props.userLocation.lng]
     return (
       <div>
-        <Map className="map" center={position} zoom={this.state.zoom}>
+        <Map className="map" center={position} zoom={this.props.zoom}>
           <TileLayer
             attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
-          {this.state.haveUsersLocation ?
+          {this.props.haveUsersLocation ?
             <Marker
               position={position}
               icon={myIcon}
@@ -59,7 +63,7 @@ class MapPage extends Component {
           }
         </Map>
         <div className="message-form">
-          <Survey handleSubmit={this.props.handleSubmit} />
+          <Survey handleSubmit={this.props.handleSubmit} city={this.props.city} country={this.props.country} />
         </div>
       </div>
     )
