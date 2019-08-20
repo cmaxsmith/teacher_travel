@@ -3,6 +3,7 @@ import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
 import L from 'leaflet';
 import bluedotradius from '../assets/blue-dot-radius.png';
 import Survey from './survey';
+import SearchBar from './SearchBar';
 
 
 
@@ -15,14 +16,6 @@ let myIcon = L.icon({
 
 
 class MapPage extends Component {
-  // state = {
-  //   location: {
-  //     lat: 51.505,
-  //     lng: -0.09,
-  //   },
-  //   zoom: 3,
-  //   haveUsersLocation: false
-  // }
 
   componentDidMount() {
     const { handleUserLocation, handleViewLocation } = this.props
@@ -31,12 +24,10 @@ class MapPage extends Component {
       handleUserLocation(latitude, longitude)
       handleViewLocation(latitude, longitude)
       console.log(position.coords.latitude, position.coords.longitude);
-      console.log(this.props)
     })
   }
 
   render() {
-    console.log(this.props)
     const userLocation = [this.props.userLocation.lat, this.props.userLocation.lng]
     const viewLocation = [this.props.viewLocation.lat, this.props.viewLocation.lng]
     return (
@@ -59,6 +50,9 @@ class MapPage extends Component {
         </Map>
         <div className="message-form">
           <Survey handleSubmit={this.props.handleSubmit} city={this.props.city} country={this.props.country} />
+        </div>
+        <div className="search-bar">
+          <SearchBar />
         </div>
       </div>
     )
