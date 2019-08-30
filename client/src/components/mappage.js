@@ -51,7 +51,6 @@ class MapPage extends Component {
           </Popup>
             </Marker> : ''
           }
-          {/* <ReactLeafletSearch position="topleft" /> */}
         </Map>
         <div className="message-form">
           <Survey handleSubmit={this.props.handleSubmit} city={this.props.city} country={this.props.country} />
