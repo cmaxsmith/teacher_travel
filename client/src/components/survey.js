@@ -30,7 +30,6 @@ class Survey extends Component {
     const result = Joi.validate(cityData, schema);
 
     return result.error ? false : true;
-
   }
 
   formSubmitted = (event) => {
@@ -69,7 +68,6 @@ class Survey extends Component {
     this.setState({
       [event.target.name]: event.target.value
     })
-
   }
 
   render() {

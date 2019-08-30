@@ -4,6 +4,8 @@ import L from 'leaflet';
 import bluedotradius from '../assets/blue-dot-radius.png';
 import Survey from './survey';
 import SearchBar from './SearchBar';
+import { ReactLeafletSearch } from 'react-leaflet-search';
+import CitySearch from './CitySearch';
 
 
 
@@ -30,9 +32,11 @@ class MapPage extends Component {
   render() {
     const userLocation = [this.props.userLocation.lat, this.props.userLocation.lng]
     const viewLocation = [this.props.viewLocation.lat, this.props.viewLocation.lng]
+
     return (
       <div>
         <Map className="map" center={viewLocation} zoom={this.props.zoom}>
+
           <TileLayer
             attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -47,12 +51,13 @@ class MapPage extends Component {
           </Popup>
             </Marker> : ''
           }
+          {/* <ReactLeafletSearch position="topleft" /> */}
         </Map>
         <div className="message-form">
           <Survey handleSubmit={this.props.handleSubmit} city={this.props.city} country={this.props.country} />
         </div>
         <div className="search-bar">
-          <SearchBar />
+          <CitySearch handleViewLocation={this.props.handleViewLocation} />
         </div>
       </div>
     )
